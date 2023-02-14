@@ -1,0 +1,13 @@
+---
+layout: default
+---
+<div class="flex-container">
+  <i class="page-mask"></i>
+  {% include header.html %}
+  <div class="content wrapper">
+    {% include search.html %}
+    {{ content }}
+    {% include pagination.html %}
+  </div> <!-- End Wrapper -->
+  {% include footer.html %}
+</div>

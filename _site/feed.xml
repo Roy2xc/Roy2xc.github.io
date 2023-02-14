@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-02-14T11:53:55+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">前端笔记</title><subtitle>Chzng&apos;s前端笔记</subtitle><author><name>chzng</name></author><entry><title type="html">ECMAScript 6</title><link href="http://localhost:4000/ECMAScript-6/" rel="alternate" type="text/html" title="ECMAScript 6" /><published>2018-06-04T00:00:00+08:00</published><updated>2018-06-04T00:00:00+08:00</updated><id>http://localhost:4000/ECMAScript-6</id><content type="html" xml:base="http://localhost:4000/ECMAScript-6/"><![CDATA[<p>ECMAScript 6.0（以下简称 ES6）是 JavaScript 语言的下一代标准，已经在 2015 年 6 月正式发布了。它的目标，是使得 JavaScript 语言可以用来编写复杂的大型应用程序，成为企业级开发语言。</p>
+
+<h2 id="ecmascript-和-javascript-的关系">ECMAScript 和 JavaScript 的关系</h2>
+<p>一个常见的问题是，ECMAScript 和 JavaScript 到底是什么关系？</p>
+
+<p>要讲清楚这个问题，需要回顾历史。1996 年 11 月，JavaScript 的创造者 Netscape 公司，决定将 JavaScript 提交给标准化组织 ECMA，希望这种语言能够成为国际标准。次年，ECMA 发布 262 号标准文件（ECMA-262）的第一版，规定了浏览器脚本语言的标准，并将这种语言称为 ECMAScript，这个版本就是 1.0 版。</p>
+
+<p>该标准从一开始就是针对 JavaScript 语言制定的，但是之所以不叫 JavaScript，有两个原因。一是商标，Java 是 Sun 公司的商标，根据授权协议，只有 Netscape 公司可以合法地使用 JavaScript 这个名字，且 JavaScript 本身也已经被 Netscape 公司注册为商标。二是想体现这门语言的制定者是 ECMA，不是 Netscape，这样有利于保证这门语言的开放性和中立性。</p>
+
+<p>因此，ECMAScript 和 JavaScript 的关系是，前者是后者的规格，后者是前者的一种实现（另外的 ECMAScript 方言还有 Jscript 和 ActionScript）。日常场合，这两个词是可以互换的。</p>
+
+<h2 id="es6-与-ecmascript-2015-的关系">ES6 与 ECMAScript 2015 的关系</h2>
+<p>ECMAScript 2015（简称 ES2015）这个词，也是经常可以看到的。它与 ES6 是什么关系呢？</p>
+
+<p>2011 年，ECMAScript 5.1 版发布后，就开始制定 6.0 版了。因此，ES6 这个词的原意，就是指 JavaScript 语言的下一个版本。</p>
+
+<p>但是，因为这个版本引入的语法功能太多，而且制定过程当中，还有很多组织和个人不断提交新功能。事情很快就变得清楚了，不可能在一个版本里面包括所有将要引入的功能。常规的做法是先发布 6.0 版，过一段时间再发 6.1 版，然后是 6.2 版、6.3 版等等。</p>
+
+<p>但是，标准的制定者不想这样做。他们想让标准的升级成为常规流程：任何人在任何时候，都可以向标准委员会提交新语法的提案，然后标准委员会每个月开一次会，评估这些提案是否可以接受，需要哪些改进。如果经过多次会议以后，一个提案足够成熟了，就可以正式进入标准了。这就是说，标准的版本升级成为了一个不断滚动的流程，每个月都会有变动。</p>
+
+<p>标准委员会最终决定，标准在每年的 6 月份正式发布一次，作为当年的正式版本。接下来的时间，就在这个版本的基础上做改动，直到下一年的 6 月份，草案就自然变成了新一年的版本。这样一来，就不需要以前的版本号了，只要用年份标记就可以了。</p>
+
+<p>ES6 的第一个版本，就这样在 2015 年 6 月发布了，正式名称就是《ECMAScript 2015 标准》（简称 ES2015）。2016 年 6 月，小幅修订的《ECMAScript 2016 标准》（简称 ES2016）如期发布，这个版本可以看作是 ES6.1 版，因为两者的差异非常小（只新增了数组实例的includes方法和指数运算符），基本上是同一个标准。根据计划，2017 年 6 月发布 ES2017 标准。</p>
+
+<p>因此，ES6 既是一个历史名词，也是一个泛指，含义是 5.1 版以后的 JavaScript 的下一代标准，涵盖了 ES2015、ES2016、ES2017 等等，而 ES2015 则是正式名称，特指该年发布的正式版本的语言标准。本书中提到 ES6 的地方，一般是指 ES2015 标准，但有时也是泛指“下一代 JavaScript 语言”。</p>
+
+<h2 id="babel-转码器">Babel 转码器</h2>
+
+<p>Babel 是一个广泛使用的 ES6 转码器，可以将 ES6 代码转为 ES5 代码，从而在现有环境执行。这意味着，你可以用 ES6 的方式编写程序，又不用担心现有环境是否支持。下面是一个例子。</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="sr">//</span> <span class="err">转码前</span>
+<span class="n">input</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="n">item</span> <span class="o">=&gt;</span> <span class="n">item</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+
+<span class="sr">//</span> <span class="err">转码后</span>
+<span class="n">input</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="n">function</span> <span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">item</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">});</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>上面的原始代码用了箭头函数，Babel 将其转为普通函数，就能在不支持箭头函数的 JavaScript 环境执行了。</p>
+
+<h2 id="let-和-const-命令">let 和 const 命令</h2>
+<h3 id="基本用法">基本用法</h3>
+<p>ES6 新增了let命令，用来声明变量。它的用法类似于var，但是所声明的变量，只在let命令所在的代码块内有效。</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{</span>
+  <span class="n">let</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+  <span class="n">var</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">a</span> <span class="sr">//</span> <span class="no">ReferenceError</span><span class="p">:</span> <span class="n">a</span> <span class="n">is</span> <span class="n">not</span> <span class="n">defined</span><span class="p">.</span>
+<span class="nf">b</span> <span class="sr">//</span> <span class="mi">1</span></code></pre></figure>
+
+<p>上面代码在代码块之中，分别用let和var声明了两个变量。然后在代码块之外调用这两个变量，结果let声明的变量报错，var声明的变量返回了正确的值。这表明，let声明的变量只在它所在的代码块有效。</p>
+
+<p>for循环的计数器，就很合适使用let命令。</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">for</span> <span class="p">(</span><span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="sr">//</span> <span class="o">...</span>
+<span class="p">}</span>
+
+<span class="n">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="sr">//</span> <span class="no">ReferenceError</span><span class="p">:</span> <span class="n">i</span> <span class="n">is</span> <span class="n">not</span> <span class="n">defined</span></code></pre></figure>
+
+<p>上面代码中，计数器i只在for循环体内有效，在循环体外引用就会报错。</p>
+
+<p>下面的代码如果使用var，最后输出的是10。</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">var</span> <span class="n">a</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="n">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">6</span><span class="p">]();</span> <span class="sr">//</span> <span class="mi">10</span></code></pre></figure>
+
+<p>上面代码中，变量i是var命令声明的，在全局范围内都有效，所以全局只有一个变量i。每一次循环，变量i的值都会发生改变，而循环内被赋给数组a的函数内部的console.log(i)，里面的i指向的就是全局的i。也就是说，所有数组a的成员里面的i，指向的都是同一个i，导致运行时输出的是最后一轮的i的值，也就是 10。</p>
+
+<p>如果使用let，声明的变量仅在块级作用域内有效，最后输出的是 6。</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">var</span> <span class="n">a</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="n">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">6</span><span class="p">]();</span> <span class="sr">//</span> <span class="mi">6</span></code></pre></figure>
+
+<p>上面代码中，变量i是let声明的，当前的i只在本轮循环有效，所以每一次循环的i其实都是一个新的变量，所以最后输出的是6。你可能会问，如果每一轮循环的变量i都是重新声明的，那它怎么知道上一轮循环的值，从而计算出本轮循环的值？这是因为 JavaScript 引擎内部会记住上一轮循环的值，初始化本轮的变量i时，就在上一轮循环的基础上进行计算。</p>
+
+<p>另外，for循环还有一个特别之处，就是设置循环变量的那部分是一个父作用域，而循环体内部是一个单独的子作用域。</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">for</span> <span class="p">(</span><span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="s1">'abc'</span><span class="p">;</span>
+  <span class="n">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="sr">//</span> <span class="n">abc</span>
+<span class="sr">//</span> <span class="n">abc</span>
+<span class="sr">//</span> <span class="n">abc</span></code></pre></figure>
+
+<p>上面代码正确运行，输出了 3 次abc。这表明函数内部的变量i与循环变量i不在同一个作用域，有各自单独的作用域。</p>]]></content><author><name>Chzng</name></author><category term="Javascript" /><summary type="html"><![CDATA[ECMAScript 6]]></summary></entry><entry><title type="html">I conquer the Himalayas</title><link href="http://localhost:4000/i-conquer-the-himalayas/" rel="alternate" type="text/html" title="I conquer the Himalayas" /><published>2018-01-01T00:00:00+08:00</published><updated>2018-01-01T00:00:00+08:00</updated><id>http://localhost:4000/i-conquer-the-himalayas</id><content type="html" xml:base="http://localhost:4000/i-conquer-the-himalayas/"><![CDATA[<p>Vaporware snackwave stumptown, small batch tattooed try-hard prism fanny pack 3 wolf moon edison bulb tofu hot chicken vice. Selvage iPhone hell of tote bag seitan organic PBR&amp;B williamsburg palo santo tousled fanny pack pinterest normcore. Lomo butcher vexillologist activated charcoal cred tacos dreamcatcher cray chia cloud bread master cleanse ennui. Copper mug hella iceland occupy venmo. Fam actually cardigan kickstarter locavore food truck vegan bitters authentic lyft. Vaporware listicle keffiyeh adaptogen. Cloud bread stumptown swag la croix polaroid pickled. Next level yuccie four dollar toast polaroid. Portland chicharrones craft beer helvetica 3 wolf moon.</p>
+
+<p>Fanny pack wolf asymmetrical PBR&amp;B activated charcoal chia retro iPhone. Everyday carry artisan live-edge bespoke ramps. Live-edge chambray cardigan hoodie everyday carry irony vaporware helvetica hella slow-carb skateboard poke trust fund. Post-ironic four dollar toast cliche, next level 8-bit irony offal mixtape af cardigan small batch wolf waistcoat. Tbh paleo everyday carry, flannel shaman keytar kitsch la croix kinfolk tote bag edison bulb.</p>
+
+<blockquote>
+  <p>Snackwave chillwave seitan whatever, flannel wolf vinyl occupy activated charcoal succulents waistcoat. Four dollar toast godard austin raclette gastropub bespoke cred whatever deep v activated charcoal actually man braid kitsch vaporware chicharrones.</p>
+</blockquote>
+
+<p>Taxidermy shaman irony williamsburg bespoke. Freegan ugh mumblecore selfies, shabby chic neutra everyday carry. Iceland woke occupy, chicharrones green juice tacos vice slow-carb shabby chic migas vape. Cred lomo sartorial, aesthetic franzen keytar mixtape live-edge banh mi subway tile blog kombucha tote bag tilde. Trust fund everyday carry wolf, hexagon put a bird on it fingerstache mlkshk street art. Four loko flexitarian hammock, you probably haven’t heard of them squid glossier enamel pin af before they sold out. Jianbing narwhal chartreuse helvetica 3 wolf moon quinoa. 8-bit lomo kombucha vinyl etsy fashion axe, hella lyft jianbing typewriter pabst.</p>
+
+<p>8-bit disrupt food truck polaroid, viral you probably haven’t heard of them chillwave next level letterpress williamsburg etsy tthammock intelligentsia. Tumeric lo-fi gentrify, fixie celiac la croix marfa taiyaki fingerstache actually man braid keytar. Brunch coloring book succulents church-key umami affogato. Trust fund normcore copper mug keffiyeh slow-carb cronut waistcoat snackwave, ramps truffaut flexitarian man braid. Celiac flexitarian authentic hashtag wayfarers. Next level pitchfork scenester godard. Salvia etsy edison bulb knausgaard poke jianbing actually. Mlkshk retro cardigan photo booth swag. Occupy shaman austin, meditation green juice flannel succulents twee. Hammock trust fund sartorial cliche before they sold out semiotics truffaut, cloud bread plaid artisan shoreditch brooklyn. Shoreditch air plant asymmetrical DIY. Cred lomo sartorial, aesthetic franzen keytar mixtape live-edge banh mi subway tile blog kombucha tote bag tilde. Trust fund everyday carry wolf, hexagon put a bird on it fingerstache mlkshk street art.</p>]]></content><author><name>Chzng</name></author><category term="Blog" /><category term="Mountains" /><summary type="html"><![CDATA[You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes.]]></summary></entry><entry><title type="html">I meet the sunset</title><link href="http://localhost:4000/i-meet-the-sunset/" rel="alternate" type="text/html" title="I meet the sunset" /><published>2018-01-01T00:00:00+08:00</published><updated>2018-01-01T00:00:00+08:00</updated><id>http://localhost:4000/i-meet-the-sunset</id><content type="html" xml:base="http://localhost:4000/i-meet-the-sunset/"><![CDATA[<p>You’ll find this post in your <code class="language-plaintext highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="language-plaintext highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+
+<p>To add new posts, simply add a file in the <code class="language-plaintext highlighter-rouge">_posts</code> directory that follows the convention <code class="language-plaintext highlighter-rouge">YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+
+<p>Jekyll also offers powerful support for code snippets:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
+<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+
+<p>Check out the <a href="https://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>]]></content><author><name>Chzng</name></author><category term="Blog" /><category term="Sunset" /><summary type="html"><![CDATA[You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes.]]></summary></entry><entry><title type="html">On a meeting with adventures</title><link href="http://localhost:4000/meeting-with-adventures/" rel="alternate" type="text/html" title="On a meeting with adventures" /><published>2018-01-01T00:00:00+08:00</published><updated>2018-01-01T00:00:00+08:00</updated><id>http://localhost:4000/meeting-with-adventures</id><content type="html" xml:base="http://localhost:4000/meeting-with-adventures/"><![CDATA[<p>You’ll find this post in your <code class="language-plaintext highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="language-plaintext highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+
+<p>To add new posts, simply add a file in the <code class="language-plaintext highlighter-rouge">_posts</code> directory that follows the convention <code class="language-plaintext highlighter-rouge">YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+
+<p>Jekyll also offers powerful support for code snippets:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
+<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+
+<p>Check out the <a href="https://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>]]></content><author><name>Chzng</name></author><category term="Blog" /><category term="Sunset" /><summary type="html"><![CDATA[You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes.]]></summary></entry><entry><title type="html">Snowboarding and my life</title><link href="http://localhost:4000/snowboarding-and-my-life/" rel="alternate" type="text/html" title="Snowboarding and my life" /><published>2018-01-01T00:00:00+08:00</published><updated>2018-01-01T00:00:00+08:00</updated><id>http://localhost:4000/snowboarding-and-my-life</id><content type="html" xml:base="http://localhost:4000/snowboarding-and-my-life/"><![CDATA[<p>You’ll find this post in your <code class="language-plaintext highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="language-plaintext highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+
+<p>To add new posts, simply add a file in the <code class="language-plaintext highlighter-rouge">_posts</code> directory that follows the convention <code class="language-plaintext highlighter-rouge">YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+
+<p>Jekyll also offers powerful support for code snippets:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
+<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+
+<p>Check out the <a href="https://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>]]></content><author><name>Chzng</name></author><category term="Blog" /><category term="Mountains" /><category term="Sport" /><summary type="html"><![CDATA[You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes.]]></summary></entry><entry><title type="html">The forest in the fog</title><link href="http://localhost:4000/the-forest-in-the-fog/" rel="alternate" type="text/html" title="The forest in the fog" /><published>2018-01-01T00:00:00+08:00</published><updated>2018-01-01T00:00:00+08:00</updated><id>http://localhost:4000/the-forest-in-the-fog</id><content type="html" xml:base="http://localhost:4000/the-forest-in-the-fog/"><![CDATA[<p>You’ll find this post in your <code class="language-plaintext highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="language-plaintext highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+
+<p>To add new posts, simply add a file in the <code class="language-plaintext highlighter-rouge">_posts</code> directory that follows the convention <code class="language-plaintext highlighter-rouge">YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+
+<p>Jekyll also offers powerful support for code snippets:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
+<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+
+<p>Check out the <a href="https://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>]]></content><author><name>Chzng</name></author><category term="Blog" /><category term="Meditation" /><summary type="html"><![CDATA[You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes.]]></summary></entry><entry><title type="html">Time to think</title><link href="http://localhost:4000/time-to-think/" rel="alternate" type="text/html" title="Time to think" /><published>2018-01-01T00:00:00+08:00</published><updated>2018-01-01T00:00:00+08:00</updated><id>http://localhost:4000/time-to-think</id><content type="html" xml:base="http://localhost:4000/time-to-think/"><![CDATA[<p>You’ll find this post in your <code class="language-plaintext highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="language-plaintext highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+
+<p>To add new posts, simply add a file in the <code class="language-plaintext highlighter-rouge">_posts</code> directory that follows the convention <code class="language-plaintext highlighter-rouge">YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+
+<p>Jekyll also offers powerful support for code snippets:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
+<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+
+<p>Check out the <a href="https://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>]]></content><author><name>Chzng</name></author><category term="Blog" /><category term="Meditation" /><summary type="html"><![CDATA[You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes.]]></summary></entry></feed>
