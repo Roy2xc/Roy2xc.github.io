@@ -1,21 +1,21 @@
-title: 前端笔记
-email: chzng@outlook.com
-description: Chzng's前端笔记
+title: Roy的笔记
+email: xuechengz2022@163.com
+description: Roy的笔记
 permalink: ':title/'
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Author settings
-author: chzng # add your name
+author: roy2xc # add your name
 author-pic: chzng-face.jpg
-about-author: My name is Chzng. I’m a full-time front-end Engineer.
+about-author: My name is Xuecheng, I'm now a C++ programer, and I will be a full time SLAM Engineer.
 
 # Contact links
-email: chzng@outlook.com # Add your Email address
+email: xuechengz2022@163.com # Add your Email address
 phone: none # Add your Phone number
-website: https://chzng.github.io # Add your website, do not add http://
-github: chzng # Add your Github handle
-twitter: chzng # Add your Twitter handle
+website: https://roy2xc.github.io/ # Add your website, do not add http://
+github: Roy2xc # Add your Github handle
+twitter: no twiteer # Add your Twitter handle
 
 # Tracker
 analytics: # Google Analytics
